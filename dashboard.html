@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--========== Metarials Icon library ==========-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!--========== Metarials Icon library end ==========-->
+
+  <!--========== Unicons Icon library ==========-->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+
+  <!--========== Unicons Icon library end ==========-->
+
+  <!--========== custom css files ==========-->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard-min.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!--========== custom css files end ==========-->
+  <style>
+    .actions {
+      display: none;
+    }
+
+    .fromto {
+      display: none;
+    }
+  </style>
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <header>
+    <div class="tab-scroll">
+      <div class="tab-wraper">
+        <a href="dashboard.html">
+          <div class="tab active">
+            <span class="material-symbols-outlined"> dashboard </span>
+            Collector Dashboard
+          </div>
+        </a>
+        <a href="marketplace.html">
+          <div class="tab">
+            <i class="ph ph-storefront"></i>
+            Marketplace
+          </div>
+        </a>
+
+        <div class="logout">
+          <div class="tab">
+            <span class="material-symbols-outlined"> logout </span> Log out
+          </div>
+          <div class="refine-card">
+            <p>Refine <span>MVP</span> specs</p>
+            <div class="time">
+              <span class="material-symbols-outlined"> schedule </span>
+              <div class="count">1:43:40</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--============ main dashboard view ============-->
+  <section class="dashboard-main">
+    <!-- status bar wraper -->
+    <div class="res">
+      <!--logo with the menu icon-->
+      <div class="logo-nav">
+        <a href="dashboard.html">
+          <img src="images/logo.png" alt="" />
+        </a>
+        <i class="uil uil-angle-right-b pc" onclick="nav()"></i>
+
+        <i class="uil uil-align-center-alt mb" onclick="nav()"></i>
+      </div>
+      <!--logo with the menu icon end-->
+
+      <!-- status bar with search input, user, setting, notification -->
+      <div class="stautus-bar">
+        <h2>Citizen Dashboard</h2>
+        <div class="search-bar">
+          <div class="input">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here...." />
+          </div>
+        </div>
+        <div class="mobile-ac" onclick="acItem()">
+          <span class="material-symbols-outlined"> more_vert </span>
+        </div>
+        <div class="action-item-wraper">
+          <div class="ico notification">
+            <span class="material-symbols-outlined"> notifications </span>
+          </div>
+          <div class="ico">
+            <i class="uil uil-setting"></i>
+          </div>
+          <div class="profile" onclick="themeS()">
+            <div class="profile-pic">
+              <img src="images/user.png" alt="" />
+            </div>
+            <div class="name">
+              <p>Maruf H.</p>
+              <small>Admin</small>
+            </div>
+            <span class="material-symbols-outlined">
+              keyboard_arrow_down
+            </span>
+
+            <div class="theme">
+              <label for="theme">
+                <input type="checkbox" name="" id="theme" />
+                <i class="uil uil-moon"></i>
+                <i class="uil uil-sun"></i>
+                <p class="dark">Dark mode</p>
+                <p class="light">Light mode</p>
+
+                <div class="switch">
+                  <div class="slider"></div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- status bar with search input, user, setting, notification end -->
+    </div>
+    <!-- status bar wraper end -->
+
+    <div class="dashboard-container">
+      <!-- dashboard main tab -->
+      <div class="tab-content">
+        <!-- status cards wraper currently have 4 cards, can be added more -->
+        <div class="status-card-wraper">
+          <!-- status card -->
+          <div class="status-card" style="--b: #dcfce7; --i: #27ae60;">
+            <div class="icon"><i class="ph ph-plant"></i></div>
+            <div class="details">
+              <small>Total waste</small>
+              <h3 id="totalWaste">0KG</h3>
+            </div>
+            <div class="graph"><img src="images/g1.png" alt="" /></div>
+          </div>
+
+          <!-- status card -->
+          <div class="status-card" style="--b: #fcf6dc; --i: #ffa704;">
+            <div class="icon"><i class="ph ph-coins"></i></div>
+            <div class="details">
+              <small>Total Earned</small>
+              <h3 id="totalCredits">0WC</h3>
+            </div>
+            <div class="graph"><img src="images/g2.png" alt="" /></div>
+          </div>
+
+          <!-- status card -->
+          <div class="status-card" style="--b: #fcdcdc; --i: #ff0404;">
+            <div class="icon"><i class="ph ph-circle-notch"></i></div>
+            <div class="details">
+              <small>Pending Request</small>
+              <h3 id="pendingCount">0</h3>
+            </div>
+            <div class="percent">
+              <div class="ico" style="--i: #f82e2e; --b: #fee2e2">
+                <span class="material-symbols-outlined"> south_east </span>
+              </div>
+              <span id="pendingPercent">0%</span>
+            </div>
+          </div>
+
+          <!-- status card -->
+          <div class="status-card" style="--b: #dcf0fc; --i: #2781ae;">
+            <div class="icon"><i class="ph ph-flag-banner"></i></div>
+            <div class="details">
+              <small>Completed</small>
+              <h3 id="completedCount">0</h3>
+            </div>
+            <div class="percent">
+              <div class="ico" style="--i: #27ae60; --b: #dcfce7">
+                <span class="material-symbols-outlined"> north_east </span>
+              </div>
+              <span id="completedPercent">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- status cards wraper end -->
+
+        <!-- upcoming interview block -->
+        <div class="upcoming-interview">
+          <div class="grid-2 g-2-1">
+            <div class="block upcoming">
+              <div class="block-header">
+                <div class="title-menu">
+                  <h2>History</h2>
+                  <div class="filter-flex">
+                    <button>
+                      type
+                      <span class="material-symbols-outlined">
+                        filter_alt
+                      </span>
+                    </button>
+                    <select name="" id="">
+                      <option value="">This week</option>
+                      <option value="">This week</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- data table -->
+              <div class="data-table">
+                <table id="wasteTable">
+                  <tr>
+                    <th>TX ID</th>
+                    <th>Waste Type</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Credits</th>
+                  </tr>
+
+                  <!-- existing rows -->
+                  <tr class="interview">
+                    <td class="company">
+                      <div class="details-typo">
+                        <h4>Plastic</h4>
+                      </div>
+                    </td>
+                    <td class="date-time">
+                      <div class="details-typo">
+                        <h4>Aug 20, 2025</h4>
+                        <p>09:00 am</p>
+                      </div>
+                    </td>
+                    <td class="status">
+                      <div class="tag pending">Pending</div>
+                    </td>
+                    <td class="contact">
+                      <p>2KG</p>
+                    </td>
+                    <td class="action">
+                      <h4>5WC</h4>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- data table end -->
+            </div>
+            <div class="right">
+
+              <!-- upcoming event -->
+              <div class="block upcoming-event">
+                <div class="tab-menu-2">
+                  <div class="tab active">Upcoming Collection</div>
+                  <div class="tab">Calender</div>
+                </div>
+                <div class="tab-content active">
+                  <div class="typo-2">
+                    <h3>All Upcoming waste collection</h3>
+                    <p>Dont miss the scheduled events!</p>
+                  </div>
+                  <div class="notification-card-wraper">
+                    <!-- notification card -->
+                    <div class="notification-card">
+                      <div class="header" style="--i: #ffa412; --b: #fff8f1">
+                        <div class="time">
+                          <div></div>
+                          <p>10:00-11:00</p>
+                        </div>
+                        <span class="material-symbols-outlined">
+                          more_horiz
+                        </span>
+                      </div>
+
+                      <div class="typo-2">
+                        <h3>Collect Plastic</h3>
+                        <p>Specifically collect plastics</p>
+                      </div>
+                    </div>
+                    <!-- notification card -->
+
+                    <!-- notification card -->
+                    <div class="notification-card">
+                      <div class="header" style="--i: #a700ff; --b: #fbf4fe">
+                        <div class="time">
+                          <div></div>
+                          <p>10:00-11:00</p>
+                        </div>
+                        <span class="material-symbols-outlined">
+                          more_horiz
+                        </span>
+                      </div>
+
+                      <div class="typo-2">
+                        <h3>Metal Collection</h3>
+                        <p>Specifically collect metals</p>
+                      </div>
+                    </div>
+                    <!-- notification card -->
+                  </div>
+                </div>
+              </div>
+              <!-- upcoming event end -->
+            </div>
+          </div>
+        </div>
+
+        <!-- upcoming interview block end -->
+      </div>
+      <!-- dashboard main tab -->
+    </div>
+  </section>
+  <div class="add-table">
+    <i class="ph ph-plus"></i>
+  </div>
+  <!-- add modal -->
+  <div class="add-modal">
+    <div class="total">
+      <p>Estimated credit</p>
+      <h2 id="creditPreview">0WC</h2>
+    </div>
+    <select id="wasteType">
+      <option value="Organic">Organic</option>
+      <option value="Metal">Metal</option>
+      <option value="Ewaste">E-waste</option>
+    </select>
+    <input type="number" id="amount" placeholder="Amount in KG">
+    <button id="addBtn">Add</button>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

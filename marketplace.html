@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--========== Metarials Icon library ==========-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--========== Metarials Icon library end ==========-->
+
+    <!--========== Unicons Icon library ==========-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+
+    <!--========== Unicons Icon library end ==========-->
+
+    <!--========== custom css files ==========-->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/dashboard-min.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!--========== custom css files end ==========-->
+    <title>Collector Dashboard</title>
+    <style>
+        .actions {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="tab-scroll">
+            <div class="tab-wraper">
+                <a href="dashboard.html">
+                    <div class="tab">
+                        <span class="material-symbols-outlined"> dashboard </span>
+                        Collector Dashboard
+                    </div>
+                </a>
+                <a href="marketplace.html">
+                    <div class="tab active">
+                        <i class="ph ph-storefront"></i>
+                        Marketplace
+                    </div>
+                </a>
+
+                <div class="logout">
+                    <div class="tab">
+                        <span class="material-symbols-outlined"> logout </span> Log out
+                    </div>
+                    <div class="refine-card">
+                        <p>Refine <span>MVP</span> specs</p>
+                        <div class="time">
+                            <span class="material-symbols-outlined"> schedule </span>
+                            <div class="count">1:43:40</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--============ main dashboard view ============-->
+    <section class="dashboard-main">
+        <!-- status bar wraper -->
+        <div class="res">
+            <!--logo with the menu icon-->
+            <div class="logo-nav">
+                <a href="dashboard.html">
+                    <img src="images/logo.png" alt="" />
+                </a>
+                <i class="uil uil-angle-right-b pc" onclick="nav()"></i>
+
+                <i class="uil uil-align-center-alt mb" onclick="nav()"></i>
+            </div>
+            <!--logo with the menu icon end-->
+
+            <!-- status bar with search input, user, setting, notification -->
+            <div class="stautus-bar">
+                <h2>Marketplace</h2>
+                <div class="search-bar">
+                    <div class="input">
+                        <i class="uil uil-search"></i>
+                        <input type="text" placeholder="Search here...." />
+                    </div>
+                </div>
+                <div class="mobile-ac" onclick="acItem()">
+                    <span class="material-symbols-outlined"> more_vert </span>
+                </div>
+                <div class="action-item-wraper">
+                    <div class="ico notification">
+                        <span class="material-symbols-outlined"> notifications </span>
+                    </div>
+                    <div class="ico">
+                        <i class="uil uil-setting"></i>
+                    </div>
+                    <div class="profile" onclick="themeS()">
+                        <div class="profile-pic">
+                            <img src="images/user.png" alt="" />
+                        </div>
+                        <div class="name">
+                            <p>Maruf H.</p>
+                            <small>Admin</small>
+                        </div>
+                        <span class="material-symbols-outlined">
+                            keyboard_arrow_down
+                        </span>
+
+                        <div class="theme">
+                            <label for="theme">
+                                <input type="checkbox" name="" id="theme" />
+                                <i class="uil uil-moon"></i>
+                                <i class="uil uil-sun"></i>
+                                <p class="dark">Dark mode</p>
+                                <p class="light">Light mode</p>
+
+                                <div class="switch">
+                                    <div class="slider"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- status bar with search input, user, setting, notification end -->
+        </div>
+        <!-- status bar wraper end -->
+
+        <div class="dashboard-container">
+            <div class="grid-4" id="storeContainer">
+                <div class="card">
+                    <div class="item">
+                        <div class="ico">
+                            <i class="ph ph-beer-bottle"></i>
+                        </div>
+                        <div>
+                            <h2>Plastic</h2>
+                            <p>10KG</p>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <h2 class="price">10WC</h2>
+                    </div>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function renderStore() {
+            const storeContainer = document.getElementById("storeContainer");
+            storeContainer.innerHTML = ""; // clear before rendering
+
+            // Load records
+            let records = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+
+            // Filter only completed ones (if you want to "sell" only completed waste)
+            const completed = records.filter(r => r.status === "Done");
+
+            // Icon mapping
+            const icons = {
+                Plastic: "ph ph-beer-bottle",
+                Metal: "ph ph-cpu",
+                Organic: "ph ph-leaf",
+                Ewaste: "ph ph-device-mobile"
+            };
+
+            completed.forEach(r => {
+                const iconClass = icons[r.type] || "ph ph-box"; // fallback icon
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+      <div class="item">
+        <div class="ico">
+          <i class="${iconClass}"></i>
+        </div>
+        <div>
+          <h2>${r.type}</h2>
+          <p>${r.amount}KG</p>
+        </div>
+      </div>
+      <div class="details">
+        <h2 class="price">${r.credits}WC</h2>
+      </div>
+      <button>Buy Now</button>
+    `;
+                storeContainer.appendChild(card);
+            });
+        }
+
+        // Call once on load
+        renderStore();
+
+    </script>
+</body>
+
+</html>

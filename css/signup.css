@@ -1,0 +1,99 @@
+.signup {
+  position: relative;
+  height: calc(100vh - 4rem);
+  margin: 2rem 0;
+}
+.signup .container {
+  height: 100%;
+}
+.signup .grid-2 {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+.signup::before {
+  content: "";
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  height: 100%;
+  width: calc(50% - 4rem);
+  background: white;
+  border-radius: 2rem;
+  z-index: -1;
+}
+.signup .art-work {
+  width: calc(100% - 8rem);
+  margin: auto;
+}
+.signup-page-logo img {
+  width: unset;
+  height: 5rem;
+}
+.signup-page-logo {
+  position: absolute;
+  left: 4rem;
+  top: 2rem;
+}
+form {
+  max-width: 52.4rem;
+  width: 100%;
+  margin: auto;
+}
+
+form .typo h2 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+form .typo p {
+  font-size: 1.6rem;
+}
+form .typo {
+  margin-bottom: 3rem;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+}
+.actions .devider {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+form .ask {
+  margin-top: 3rem;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.terms p {
+  color: var(--text);
+}
+.terms input {
+  width: 2rem;
+  height: 2rem;
+}
+.security-code {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+.security-code .field .input {
+  width: 100%;
+  height: unset;
+
+  aspect-ratio: 1/1;
+}
+.security-code .field .input input {
+  font-size: 2.4rem;
+  text-align: center;
+}
